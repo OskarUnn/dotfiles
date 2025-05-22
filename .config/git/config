@@ -1,0 +1,88 @@
+[core]
+  pager = less -F -X
+  autocrlf = input
+  whitespace = error
+  compression = 9
+  preloadindex = true
+
+[alias]
+  st = "status -sb"
+  lo = "log --graph --all --pretty=format:'%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n'"
+
+[advice]
+  addEmptyPathspec = false
+  pushNonFastForward = false
+  statusHints = false
+
+[color]
+  ui = "always"
+
+[fetch]
+  prune = true
+
+[init]
+  defaultBranch = "main"
+
+[commit]
+  verbose = true
+
+[pull]
+  rebase = true
+  default = current
+
+[push]
+  autoSetupRemote = true
+  default = current
+  followTags = true
+
+[pager]
+  branch = false
+  diff = diff-so-fancy | $PAGER
+
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+
+[rebase]
+  autoStash = true
+  missingCommitsCheck = warn
+
+[log]
+  abbrevCommit = true
+  graphColors = blue,yellow,cyan,magenta,green,red
+
+[diff]
+  colorMoved = "default"
+  renames = copies
+  interHunkContext = 10
+
+[diff-so-fancy]
+  markEmptyLines = false
+
+[color "diff"]
+  frag       = magenta
+  context    = white
+  whitespace = yellow reverse
+
+[interactive]
+  diffFilter = diff-so-fancy --patch
+  singlekey = true
+
+[color "decorate"]
+  HEAD = red
+  branch = blue
+  tag = yellow
+  remoteBranch = magenta
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+
+[include]
+  path = ~/.gitconfig
+
