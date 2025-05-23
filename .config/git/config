@@ -7,7 +7,7 @@
 
 [alias]
   st = "status -sb"
-  lo = "log --graph --all --pretty=format:'%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n'"
+  logg = "log --graph --all --pretty=format:'%C(auto)%h %C(auto) %an  %ar%C(auto)  %D%n%s%n'"
 
 [advice]
   addEmptyPathspec = false
@@ -68,6 +68,9 @@
 [interactive]
   diffFilter = diff-so-fancy --patch
   singlekey = true
+
+[format]
+  pretty = "%C(auto)%h %C(auto) %an  %ar%C(auto)  %D%n%s%n"
 
 [color "decorate"]
   HEAD = red
