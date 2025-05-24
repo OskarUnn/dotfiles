@@ -1,0 +1,134 @@
+[
+  {
+    "backlight": {
+      "format": " {}%",
+      "interval": 1,
+      "on-scroll-down": "brightnessctl s 5%- --min-value",
+      "on-scroll-up": "brightnessctl s +5% --min-value",
+      "tooltip": false
+    },
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-icons": {
+        "charging": "",
+        "default": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "plugged": ""
+      },
+      "max-length": 25,
+      "states": {
+        "critical": 15,
+        "warning": 30
+      }
+    },
+    "bluetooth": {
+      "format": " {status}",
+      "format-connected": " {device_alias}",
+      "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+      "on-click": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "clock": {
+      "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "cpu": {
+      "format": "  {usage}%",
+      "interval": 15,
+      "max-length": 10
+    },
+    "custom/weather": {
+      "exec": "wttrbar",
+      "format": "{}°",
+      "interval": 3600,
+      "return-type": "json",
+      "tooltip": true
+    },
+    "disk": {
+      "format": "  {percentage_used}%",
+      "interval": 30,
+      "max-length": 10,
+      "on-click": "thunar"
+    },
+    "height": 30,
+    "hyprland/window": {
+      "max-length": 200,
+      "separate-outputs": "true"
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "on-scroll-up": "hyprctl dispatch workspace e+1"
+    },
+    "layer": "bottom",
+    "memory": {
+      "format": "  {}%",
+      "interval": 30,
+      "max-length": 10
+    },
+    "modules-center": [
+      "hyprland/workspaces"
+    ],
+    "modules-left": [
+      "cpu",
+      "memory",
+      "disk",
+      "temperature",
+      "custom/weather"
+    ],
+    "modules-right": [
+      "tray",
+      "backlight",
+      "pulseaudio",
+      "bluetooth",
+      "network",
+      "battery",
+      "clock"
+    ],
+    "network": {
+      "format": "{ifname}",
+      "format-disconnected": "",
+      "format-ethernet": "{ipaddr}/{cidr} ",
+      "format-wifi": "{essid} ({signalStrength}%) ",
+      "max-length": 50,
+      "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+      "tooltip-format-disconnected": "Disconnected",
+      "tooltip-format-ethernet": "{ifname} ",
+      "tooltip-format-wifi": "{essid} ({bandwidthTotalBytes}%) "
+    },
+    "position": "top",
+    "pulseaudio": {
+      "format": "{volume}% {icon}",
+      "format-bluetooth": "{volume}% {icon}",
+      "format-icons": {
+        "car": "",
+        "default": [
+          "",
+          ""
+        ],
+        "hands-free": "",
+        "headphone": "",
+        "headset": "",
+        "phone": "",
+        "portable": ""
+      },
+      "format-muted": "",
+      "on-click": "pavucontrol",
+      "scroll-step": 5
+    },
+    "temperature": {
+      "critical-threshold": 80,
+      "format": "{temperatureC}°C ",
+      "format-critical": "{temperatureC}°C ",
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "thermal-zone": 2
+    }
+  }
+]
