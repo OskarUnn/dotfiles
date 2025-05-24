@@ -56,6 +56,8 @@ alias -- nix-shell='nix-shell --command zsh'
 alias -- rebuild='sudo nixos-rebuild switch --flake ~/nixos/#$NIXOS_PROFILE'
 alias -- testbuild='sudo nixos-rebuild test --flake ~/nixos/#$NIXOS_PROFILE'
 
+export LESS='-asRix8'
+
 # Shell integrations
 eval "$(fzf --zsh)"
 
