@@ -48,6 +48,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias -- c=clear
 alias -- vim=nvim
+alias -- lg='l | grep'
 
 alias -- mirror='hyprctl keyword monitor ,preferred,auto,auto,mirror,eDP-1'
 alias -- unmirror='hyprctl keyword monitor ,preferred,auto,auto'

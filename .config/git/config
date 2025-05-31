@@ -1,5 +1,4 @@
 [core]
-  pager = less -F -X
   autocrlf = input
   whitespace = error
   compression = 9
