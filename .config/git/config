@@ -3,6 +3,7 @@
   whitespace = error
   compression = 9
   preloadindex = true
+  pager = diff-so-fancy | less --tabs=4
 
 [alias]
   st = "status -sb"
@@ -21,6 +22,7 @@
 
 [init]
   defaultBranch = "main"
+	templateDir = ~/.git-templates
 
 [commit]
   verbose = true
@@ -88,3 +90,5 @@
 [include]
   path = ~/.gitconfig
 
+[url "git@github.com:"]
+	insteadOf = https://github.com/

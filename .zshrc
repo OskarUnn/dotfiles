@@ -48,6 +48,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias -- c=clear
 alias -- vim=nvim
+alias -- l='ls -la'
+alias -- ll='ls -la'
 alias -- lg='l | grep'
 
 alias -- mirror='hyprctl keyword monitor ,preferred,auto,auto,mirror,eDP-1'
@@ -57,7 +59,7 @@ alias -- nix-shell='nix-shell --command zsh'
 alias -- rebuild='sudo nixos-rebuild switch --flake ~/nixos/#$NIXOS_PROFILE'
 alias -- testbuild='sudo nixos-rebuild test --flake ~/nixos/#$NIXOS_PROFILE'
 
-export LESS='-asRix8'
+export LESS='-asRix8m'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -65,3 +67,18 @@ eval "$(fzf --zsh)"
 # Starship prompt
 eval "$(starship init zsh)"
 
+
+cd() {
+  if [ "$#" -eq 0 ]; then
+    if gitroot=$(git rev-parse --show-toplevel 2>/dev/null); then
+      builtin cd "$gitroot"
+    else
+      builtin cd ~
+    fi
+  else
+    builtin cd "$@"
+  fi
+}
+
+export EDITOR=nvim
+export RIPGREP_CONFIG_PATH=~/.ripgreprc

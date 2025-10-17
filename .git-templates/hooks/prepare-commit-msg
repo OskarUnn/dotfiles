@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Only modify commit messages that are not merges or amends
+if [[ "$2" != "" ]]; then
+  exit 0
+fi
+
+# Get current branch name
+branch=$(git symbolic-ref --short HEAD)
+
+# Extract ticket (assumes format XYZ-123 somewhere in branch name)
+ticket=$(echo "$branch" | grep -oE '[A-Z]+-[0-9]+')
+
+# If ticket found and not already in commit message
+if [[ -n "$ticket" ]]; then
+  # Prepend to the commit message
+  sed -i.bak -e "1s/^/$ticket | /" "$1"
+fi
+

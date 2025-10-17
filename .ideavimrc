@@ -1,0 +1,100 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+set ignorecase
+set smartcase
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+" ===============================dified: commons-api-lendify/build.gradle
+"   IdeaVim Config (converted from NvChad)
+" ===============================
+
+" --- Basic Settings ---
+" set number          " Show line numbers
+" set relativenumber  " Enable relative line numbers (if supported)
+set commentary
+" --- Key Mappings ---
+" Map `;` to enter command mode, like pressing `:`
+"nmap ; :
+
+" Map `jk` in insert mode to exit to normal mode
+"imap jk <Esc>
+
+" Uncomment the following if you'd like to map Ctrl+S to save
+" (Make sure IntelliJ allows IdeaVim to handle Ctrl+S)
+" nmap <C-s> :w<CR>
+" imap <C-s> <Esc>:w<CR>a
+" vmap <C-s> <Esc>:w<CR>gv
+
+" --- Leader Key ---
+" NvChad uses <Space> as leader, but IdeaVim doesn't support full `<leader>` handling.
+" You can simulate it by using `<Space>` mappings directly if needed.
+" Example:
+" nmap <Space>w :w<CR>
+
+" Always yank to system clipboard
+"nmap y "+y
+"nmap yy "+yy
+"vmap y "+y
+
+" Always paste from system clipboard
+"nmap p "+p
+"nmap P "+P
+
+" --- Leave delete/change untouched (default behavior) ---
+" No need to map these; by default they go to Vim's unnamed register
+" But to be extra safe and avoid accidental remaps, you can *cancel* clipboard mapping:
+"unmap d
+"unmap dd
+"unmap c
+
+"nmap <C-h> <C-w>h
+"nmap <C-j> <C-w>j
+"nmap <C-k> <C-w>k
+"nmap <C-l> <C-w>l
+
+set clipboard+=unnamed
+
+" Bind ctrl + c to copy whole file
+map <C-C> ggVG"+y
+
+" Only prevent dd and other normal mode deletes from affecting clipboard
+nnoremap d "_d
+nnoremap dd "_dd
+nnoremap D "_D
+nnoremap c "_c
+nnoremap cc "_cc
+nnoremap C "_C
+nnoremap x "_x
+nnoremap X "_X
+nnoremap s "_s

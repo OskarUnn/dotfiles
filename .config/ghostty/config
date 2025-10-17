@@ -1,3 +1,9 @@
 theme = catppuccin-mocha
 
 resize-overlay = never
+
+window-height = 35
+window-width = 120
+
+shell-integration = zsh
+
