@@ -6,4 +6,6 @@ window-height = 35
 window-width = 120
 
 shell-integration = zsh
+shell-integration-features = ssh-terminfo
+shell-integration-features = ssh-env
 
