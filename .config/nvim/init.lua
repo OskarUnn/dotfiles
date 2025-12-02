@@ -479,13 +479,6 @@ require('lazy').setup({
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      -- Mason must be loaded before its dependents so we need to set it up here.
-      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
-      'mason-org/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
@@ -513,7 +506,7 @@ require('lazy').setup({
       --  - and more!
       --
       -- Thus, Language Servers are external tools that must be installed separately from
-      -- Neovim. This is where `mason` and related plugins come into play.
+      -- Neovim. You'll need to install them manually on your system.
       --
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
       -- and elegantly composed help section, `:help lsp-vs-treesitter`
@@ -662,7 +655,7 @@ require('lazy').setup({
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+      --  Feel free to add/remove any LSPs that you want here. You must install them manually.
       --
       --  Add any additional override configuration in the following tables. Available keys are:
       --  - cmd (table): Override the default command used to start the server
@@ -700,39 +693,33 @@ require('lazy').setup({
         },
       }
 
-      -- Ensure the servers and tools above are installed
+      -- Setup LSP servers manually
+      -- Make sure to install the LSP servers you need on your system
+      -- For example:
+      --   - lua_ls: https://github.com/LuaLS/lua-language-server
+      --   - rust_analyzer: https://rust-analyzer.github.io/
+      --   - pyright: pip install pyright
+      --   - ts_ls: npm install -g typescript typescript-language-server
       --
-      -- To check the current status of installed tools and/or manually install
-      -- other tools, you can run
-      --    :Mason
-      --
-      -- You can press `g?` for help in this menu.
-      --
-      -- `mason` had to be setup earlier: to configure its options see the
-      -- `dependencies` table for `nvim-lspconfig` above.
-      --
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      -- See `:help lspconfig-all` for a list of all pre-configured LSPs
+      for server_name, server_config in pairs(servers) do
+        local server = server_config or {}
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for ts_ls)
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
-      require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
+        -- Get the default config from lspconfig
+        -- local lspconfig = require 'lspconfig'
+        -- local default_config = lspconfig[server_name].document_config.default_config
+
+        -- Merge with our custom config
+        -- local final_config = vim.tbl_deep_extend('force', default_config, server)
+
+        -- Register using new API
+        vim.lsp.config(server_name, server)
+        vim.lsp.enable(server_name)
+      end
     end,
   },
 
