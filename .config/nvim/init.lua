@@ -234,6 +234,13 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+-- Open files from Godot
+-- local gdproject = io.open(vim.fn.getcwd() .. '/project.godot', 'r')
+-- if gdproject then
+--   io.close(gdproject)
+--   vim.fn.serverstart './godothost'
+-- end
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -691,6 +698,7 @@ require('lazy').setup({
             },
           },
         },
+        gdscript = {},
       }
 
       -- Setup LSP servers manually
@@ -712,8 +720,8 @@ require('lazy').setup({
         -- Get the default config from lspconfig
         -- local lspconfig = require 'lspconfig'
         -- local default_config = lspconfig[server_name].document_config.default_config
-
-        -- Merge with our custom config
+        --
+        -- -- Merge with our custom config
         -- local final_config = vim.tbl_deep_extend('force', default_config, server)
 
         -- Register using new API
