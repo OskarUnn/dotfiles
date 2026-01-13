@@ -9,3 +9,4 @@ shell-integration = zsh
 shell-integration-features = ssh-terminfo
 shell-integration-features = ssh-env
 
+keybind = shift+enter=text:\x1b\r
