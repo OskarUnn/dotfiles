@@ -24,7 +24,7 @@ case $1 in
     "mute")
         if [ "$(pamixer --get-mute)" == "false" ]; then
             pamixer --mute
-            notify-send "Muted" -r 40 -t "$notiftime"
+            # notify-send "Muted" -r 40 -t "$notiftime"
             exit
         fi
         ;;
@@ -49,9 +49,9 @@ current_volume=$(pamixer --get-volume)
 if [[ current_volume -eq 0 ]]; then
     pamixer --mute
     # notify-send -h int:value:"$current_volume" "Volume: $current_volume%" -r 40
-    notify-send "Muted" -r 40 -t "$notiftime"
+    # notify-send "Muted" -r 40 -t "$notiftime"
     exit 0
 fi
 
 pamixer --unmute
-notify-send -h int:value:"$current_volume" "Volume: $current_volume%" -r 40 -t "$notiftime"
+# notify-send -h int:value:"$current_volume" "Volume: $current_volume%" -r 40 -t "$notiftime"

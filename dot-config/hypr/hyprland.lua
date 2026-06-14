@@ -52,7 +52,7 @@ local browser     = "zen-browser"
 hl.on("hyprland.start", function()
 	-- hl.exec_cmd(terminal)
 	hl.exec_cmd("nm-applet")
-	hl.exec_cmd("waybar")
+	hl.exec_cmd("quickshell")
 	-- hl.exec_cmd("qs")
 	hl.exec_cmd("blueman-applet")
 	-- hl.exec_cmd("hypridle")
@@ -109,7 +109,7 @@ hl.config({
 		},
 
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-		resize_on_border = false,
+		resize_on_border = true,
 
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
 		allow_tearing    = false,
@@ -269,7 +269,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("pkill wofi || wofi --show drun -I"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("qs ipc call launcher toggle"))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M",
@@ -293,7 +293,7 @@ hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("hyprshot -m window"))
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("qs ipc call bar toggle"))
 
 -- Clipboard history
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("cliphist list | wofi --dmenu | cliphist decode | wl-copy && wl-paste"))
