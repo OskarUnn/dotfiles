@@ -54,6 +54,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("quickshell")
 	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("vesktop --start-minimized")
 	-- hl.exec_cmd("qs")
 	hl.exec_cmd("blueman-applet")
 	-- hl.exec_cmd("hypridle")
@@ -295,6 +296,8 @@ hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("qs ipc call bar toggle"))
+
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("~/.local/share/quickshell-lockscreen/lock.sh"))
 
 -- Clipboard history
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("cliphist list | wofi --dmenu | cliphist decode | wl-copy && wl-paste"))
