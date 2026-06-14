@@ -3,7 +3,7 @@
   whitespace = error
   compression = 9
   preloadindex = true
-  pager = diff-so-fancy | less --tabs=4
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
   st = "status -sb"
@@ -15,14 +15,14 @@
   statusHints = false
 
 [color]
-  ui = "always"
+  ui = true
 
 [fetch]
   prune = true
 
 [init]
   defaultBranch = "main"
-	templateDir = ~/.git-templates
+  templateDir = ~/.git-templates
 
 [commit]
   verbose = true
@@ -60,11 +60,16 @@
 
 [diff-so-fancy]
   markEmptyLines = false
+  first-run = false
 
 [color "diff"]
-  frag       = magenta
+  frag = magenta bold
   context    = white
-  whitespace = yellow reverse
+  whitespace = red reverse
+  meta = yellow
+  commit = yellow bold
+  old = red bold
+  new = green bold
 
 [interactive]
   diffFilter = diff-so-fancy --patch
@@ -92,3 +97,9 @@
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22

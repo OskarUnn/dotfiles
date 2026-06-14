@@ -82,3 +82,4 @@ cd() {
 
 export EDITOR=nvim
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+export PAGER=less
