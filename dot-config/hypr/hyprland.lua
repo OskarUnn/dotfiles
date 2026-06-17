@@ -51,10 +51,11 @@ local browser     = "zen-browser"
 --
 hl.on("hyprland.start", function()
 	-- hl.exec_cmd(terminal)
+	hl.exec_cmd("sleep 1 && /usr/lib/xdg-desktop-portal --replace")
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("quickshell")
 	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd("vesktop --start-minimized")
+	hl.exec_cmd("sleep 3 && vesktop --start-minimized")
 	-- hl.exec_cmd("qs")
 	hl.exec_cmd("blueman-applet")
 	-- hl.exec_cmd("hypridle")

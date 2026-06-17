@@ -16,6 +16,8 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+fpath=(~/.nix-profile/share/zsh/site-functions $fpath)
+
 # Load completions
 autoload -Uz compinit && compinit
 
@@ -83,3 +85,4 @@ cd() {
 export EDITOR=nvim
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 export PAGER=less
+source /etc/profile.d/nix-daemon.sh
