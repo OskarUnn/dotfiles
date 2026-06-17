@@ -12,6 +12,7 @@ Scope {
     id: root
     property var theme: DefaultTheme {}
     property string font: "Hack Nerd Font"
+    property int fontSize: 16
     property bool barVisible: true
 
     // MPRIS active player
@@ -129,7 +130,7 @@ Scope {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: ""
                                 color: root.theme.accentPrimary
-                                font.pixelSize: 14
+                                font.pixelSize: root.fontSize + 2
                                 font.family: root.font
                             }
 
@@ -137,7 +138,7 @@ Scope {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: Time.timeString
                                 color: root.theme.textPrimary
-                                font.pixelSize: 12
+                                font.pixelSize: root.fontSize
                                 font.family: root.font
                             }
 
@@ -145,7 +146,7 @@ Scope {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: Time.dateString
                                 color: root.theme.textSecondary
-                                font.pixelSize: 12
+                                font.pixelSize: root.fontSize
                                 font.family: root.font
                             }
                         }
@@ -205,7 +206,7 @@ Scope {
                                     anchors.centerIn: parent
                                     text: wsPill.modelData.id
                                     color: wsPill.modelData.focused ? root.theme.bgBase : root.theme.textPrimary
-                                    font.pixelSize: 11
+                                    font.pixelSize: root.fontSize - 1
                                     font.family: root.font
                                     font.bold: wsPill.modelData.focused
                                 }
@@ -252,7 +253,7 @@ Scope {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: root.activePlayer && root.activePlayer.isPlaying ? "󰐊" : "󰏤"
                                 color: root.theme.accentPrimary
-                                font.pixelSize: 14
+                                font.pixelSize: root.fontSize + 2
                                 font.family: root.font
                             }
 
@@ -266,7 +267,7 @@ Scope {
                                     return artist ? artist + " - " + title : title;
                                 }
                                 color: root.theme.textPrimary
-                                font.pixelSize: 11
+                                font.pixelSize: root.fontSize - 1
                                 font.family: root.font
                                 elide: Text.ElideRight
                                 width: Math.min(implicitWidth, 200)
@@ -292,7 +293,7 @@ Scope {
                         Accessible.name: "Active window: " + text
                         text: Hyprland.activeToplevel ? Hyprland.activeToplevel.title : ""
                         color: root.theme.textPrimary
-                        font.pixelSize: 13
+                        font.pixelSize: root.fontSize + 1
                         font.family: root.font
                         elide: Text.ElideRight
                         width: Math.min(implicitWidth, parent.width)
@@ -347,7 +348,7 @@ Scope {
                                         return root.theme.textMuted;
                                     return root.theme.accentPrimary;
                                 }
-                                font.pixelSize: 14
+                                font.pixelSize: root.fontSize + 2
                                 font.family: root.font
                             }
 
@@ -362,7 +363,7 @@ Scope {
                                     return Math.round(sink.audio.volume * 100) + "%";
                                 }
                                 color: root.theme.textPrimary
-                                font.pixelSize: 11
+                                font.pixelSize: root.fontSize - 1
                                 font.family: root.font
                             }
                         }
@@ -406,7 +407,7 @@ Scope {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: "󰃠"
                                 color: root.theme.accentOrange
-                                font.pixelSize: 14
+                                font.pixelSize: root.fontSize + 2
                                 font.family: root.font
                             }
 
@@ -414,7 +415,7 @@ Scope {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: Math.round(root.brightnessValue * 100) + "%"
                                 color: root.theme.textPrimary
-                                font.pixelSize: 11
+                                font.pixelSize: root.fontSize - 1
                                 font.family: root.font
                             }
                         }
@@ -463,14 +464,14 @@ Scope {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: "󰻠"
                                     color: root.theme.accentOrange
-                                    font.pixelSize: 14
+                                    font.pixelSize: root.fontSize + 2
                                     font.family: root.font
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: SystemInfo.cpuUsage
                                     color: root.theme.textPrimary
-                                    font.pixelSize: 11
+                                    font.pixelSize: root.fontSize - 1
                                     font.family: root.font
                                 }
                             }
@@ -506,14 +507,14 @@ Scope {
                                         return "󰖪";
                                     }
                                     color: SystemInfo.networkType === "disconnected" ? root.theme.textMuted : root.theme.accentGreen
-                                    font.pixelSize: 14
+                                    font.pixelSize: root.fontSize + 2
                                     font.family: root.font
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: SystemInfo.networkInfo
                                     color: root.theme.textPrimary
-                                    font.pixelSize: 11
+                                    font.pixelSize: root.fontSize - 1
                                     font.family: root.font
                                 }
                             }
@@ -537,14 +538,14 @@ Scope {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: SystemInfo.batteryIcon
                                     color: sysInfo.batteryColor
-                                    font.pixelSize: 14
+                                    font.pixelSize: root.fontSize + 2
                                     font.family: root.font
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: SystemInfo.batteryLevel
                                     color: root.theme.textPrimary
-                                    font.pixelSize: 11
+                                    font.pixelSize: root.fontSize - 1
                                     font.family: root.font
                                 }
                             }
@@ -568,14 +569,14 @@ Scope {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: "󰔏"
                                     color: root.theme.accentRed
-                                    font.pixelSize: 14
+                                    font.pixelSize: root.fontSize + 2
                                     font.family: root.font
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
                                     text: SystemInfo.temperature
                                     color: root.theme.textPrimary
-                                    font.pixelSize: 11
+                                    font.pixelSize: root.fontSize - 1
                                     font.family: root.font
                                 }
                             }
